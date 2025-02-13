@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: dynatrace-operator
-spec:
-  type: "oci"
-  interval: 30m
-  url: oci://public.ecr.aws/dynatrace/dynatrace-operator

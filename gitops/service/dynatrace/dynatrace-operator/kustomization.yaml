@@ -3,6 +3,5 @@ kind: Kustomization
 namespace: dynatrace
 resources:
   - namespace.yml
-  # - helmrepo.yml
   - ocirepo.yml
   - helmrelease.yml
