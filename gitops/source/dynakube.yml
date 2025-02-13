@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/service/dynakube/
+  path: ./gitops/service/dynatrace/dynakube/
   prune: false
   suspend: false
   targetNamespace: dynatrace

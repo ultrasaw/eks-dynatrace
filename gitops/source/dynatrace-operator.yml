@@ -8,7 +8,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/service/dynatrace-operator/
+  path: ./gitops/service/dynatrace/dynatrace-operator/
   prune: false
   suspend: false
   targetNamespace: dynatrace
