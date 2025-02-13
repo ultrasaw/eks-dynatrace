@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: result
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: app-result.com # fake domain name, edit your hosts file and specify the Load Balancer IP for this domain
+    http:
+      paths:
+      - backend:
+          service:
+            name: result
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
