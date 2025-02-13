@@ -21,7 +21,7 @@ module "eks" {
       min_size     = 1
       max_size     = 1
 
-      instance_types = ["t3.medium"]
+      instance_types = ["t3.xlarge"]
       capacity_type  = "ON_DEMAND" # can be ON_DEMAND / SPOT
     }
   }
