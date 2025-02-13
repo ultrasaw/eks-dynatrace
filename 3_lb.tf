@@ -41,7 +41,7 @@ resource "aws_autoscaling_attachment" "autoscaling_attachment" {
 resource "aws_security_group_rule" "allow_alb_to_instance" {
   type              = "ingress"
   from_port         = 80
-  to_port           = 80
+  to_port           = 443
   protocol          = "tcp"
   security_group_id = aws_security_group.allow_ssh_and_ports.id
   cidr_blocks       = ["0.0.0.0/0"] # from anywhere

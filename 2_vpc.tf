@@ -55,6 +55,14 @@ resource "aws_security_group" "allow_ssh_and_ports" {
   #   cidr_blocks = ["0.0.0.0/0"]
   # }
 
+  # dynatrace ports
+  ingress {
+    from_port   = 8000
+    to_port     = 10090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # kube-api server port
   ingress {
     from_port   = 6443
