@@ -1,14 +1,14 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: dynatrace
+  name: dynatrace-operator
   namespace: flux-system
 spec:
   interval: 5m
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./gitops/service/dynatrace
+  path: ./gitops/service/dynatrace-operator/
   prune: false
   suspend: false
   targetNamespace: dynatrace
