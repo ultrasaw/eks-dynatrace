@@ -6,7 +6,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: fluentbit
+      chart: fluent-bit
       version: "0.48.6"
       sourceRef:
         kind: HelmRepository
