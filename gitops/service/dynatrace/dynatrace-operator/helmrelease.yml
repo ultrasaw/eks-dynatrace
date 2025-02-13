@@ -6,8 +6,9 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: dynatrace-operator
+      # chart: dynatrace-operator
       # version: "1.4.1"
+      releaseName: dynatrace-operator
       sourceRef:
-        kind: HelmRepository
+        kind: OCIRepository
         name: dynatrace-operator

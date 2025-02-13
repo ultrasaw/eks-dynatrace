@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: dynatrace-operator
+spec:
+  interval: 30m
+  url: oci://public.ecr.aws/dynatrace/dynatrace-operator
+  ref:
+    semver: "1.4.1"
