@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: fluentbit
+spec:
+  interval: 30m
+  url: https://fluent.github.io/helm-charts

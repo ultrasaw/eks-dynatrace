@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: "4.11.4"
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-chart
+  values:
+    controller:
+      config:
+        compute-full-forwarded-for: "true"
+        use-forwarded-headers: "true"
+        use-proxy-protocol: "false"
+        use-gzip: "true"
+      allowSnippetAnnotations: true
+      kind: DaemonSet
+      service:
+        type: LoadBalancer # can be e.g. NodePort, LoadBalancer
