@@ -12,3 +12,5 @@ resources:
   - svc-redis.yml
   - svc-result.yml
   - svc-vote.yml
+  - ingress-result.yml
+  - ingress-vote.yml
