@@ -4,11 +4,7 @@ metadata:
   name: dynatrace-operator
 spec:
   interval: 5m
-  chart:
-    spec:
-      # chart: dynatrace-operator
-      # version: "1.4.1"
-      releaseName: dynatrace-operator
-      sourceRef:
-        kind: OCIRepository
-        name: dynatrace-operator
+  chartRef:
+    kind: OCIRepository
+    name: dynatrace-operator
+    namespace: dynatrace

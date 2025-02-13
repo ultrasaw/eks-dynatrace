@@ -6,4 +6,4 @@ spec:
   interval: 30m
   url: oci://public.ecr.aws/dynatrace/dynatrace-operator
   ref:
-    semver: "1.4.1"
+    semver: ">= 1.4.1"
