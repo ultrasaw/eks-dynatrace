@@ -186,13 +186,13 @@ spec:
       # Optional: Defines resources requests and limits for the initContainer
       # See more: https://kubernetes.io/docs/concepts/configuration/manage-resources-containers
       #
-      # initResources:
-      #   requests:
-      #     cpu: 30m
-      #     memory: 30Mi
-      #   limits:
-      #     cpu: 75m
-      #     memory: 60Mi
+      initResources:
+        requests:
+          cpu: 30m
+          memory: 30Mi
+        limits:
+          cpu: 100m
+          memory: 256Mi
 
       # Optional: The URI of the image that contains the codemodules specific OneAgent that will be injected into pods and applications.
       # For an example of a Dockerfile creating such an image, see https://dt-url.net/operator-docker-samples
