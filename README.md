@@ -41,3 +41,15 @@ After addressing the **Prerequisites** section, push to the main branch of your 
 - Terraform infrastructure provisioning with `terraform apply`
 
 The `terraform destroy` job is also available, and can be triggered manually. Pushing to any other branch will only trigger the `terraform validate` and `terraform plan` jobs.
+
+## GitOps
+
+```bash
+flux bootstrap github \
+  --token-auth \
+  --owner=ultrasaw \
+  --repository=eks-dynatrace \
+  --branch=main \
+  --path=gitops/source \
+  --personal
+```
