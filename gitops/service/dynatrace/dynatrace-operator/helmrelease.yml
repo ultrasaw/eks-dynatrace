@@ -11,8 +11,8 @@ spec:
   values:
     webhook:
       requests:
-        cpu: 200m
+        cpu: 100m
         memory: 128Mi
       limits:
-        cpu: 200m
+        cpu: 100m
         memory: 128Mi

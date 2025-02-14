@@ -27,10 +27,10 @@ spec:
           name: postgres
         resources:
           requests:
-            cpu: "150m"
+            cpu: "100m"
             memory: "128Mi"
           limits:
-            cpu: "150m"
+            cpu: "100m"
             memory: "512Mi"
         volumeMounts:
         - mountPath: /var/lib/postgresql/data
