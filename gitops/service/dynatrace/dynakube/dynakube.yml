@@ -128,13 +128,13 @@ spec:
       # Consumption of the OneAgent heavily depends on the workload to monitor
       # The values should be adjusted according to the workload
       #
-      # oneAgentResources:
-      #   requests:
-      #     cpu: 75m
-      #     memory: 512Mi
-      #   limits:
-      #     cpu: 300m
-      #     memory: 1.5Gi
+      oneAgentResources:
+        requests:
+          cpu: 75m
+          memory: 512Mi
+        limits:
+          cpu: 300m
+          memory: 1024Mi
 
       # Optional: Adds custom arguments to the OneAgent installer
       # For a list of available options, see https://www.dynatrace.com/support/help/shortlink/linux-custom-installation

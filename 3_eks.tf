@@ -17,11 +17,11 @@ module "eks" {
   eks_managed_node_groups = {
     mini-pool = {
 
-      desired_size = 1
+      desired_size = 2
       min_size     = 1
-      max_size     = 1
+      max_size     = 2
 
-      instance_types = ["t3.xlarge"]
+      instance_types = ["t3.large"]
       capacity_type  = "ON_DEMAND" # can be ON_DEMAND / SPOT
     }
   }
