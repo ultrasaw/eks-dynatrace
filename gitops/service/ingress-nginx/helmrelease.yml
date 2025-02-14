@@ -22,4 +22,4 @@ spec:
       kind: DaemonSet
       service:
         enabled: true # do not create a Load Balancer additionally (ALB deployed via Terraform instead)
-        type: NodePort # can be e.g. NodePort, LoadBalancer
+        type: LoadBalancer # can be e.g. NodePort, LoadBalancer
