@@ -21,6 +21,6 @@ spec:
       allowSnippetAnnotations: true
       kind: DaemonSet
       service:
-        enabled: false
+        enabled: true
         type: LoadBalancer # can be e.g. NodePort, LoadBalancer
         loadBalancerClass: "alb"
