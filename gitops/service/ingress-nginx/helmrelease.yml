@@ -23,4 +23,4 @@ spec:
       service:
         enabled: true
         type: LoadBalancer # can be e.g. NodePort, LoadBalancer
-        loadBalancerClass: "alb"
+        loadBalancerClass: "nlb"
