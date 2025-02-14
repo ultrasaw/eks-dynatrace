@@ -21,5 +21,6 @@ spec:
       allowSnippetAnnotations: true
       kind: DaemonSet
       service:
-        enabled: true # do not create a Load Balancer additionally (ALB deployed via Terraform instead)
+        enabled: true
         type: LoadBalancer # can be e.g. NodePort, LoadBalancer
+        loadBalancerClass: "alb"
