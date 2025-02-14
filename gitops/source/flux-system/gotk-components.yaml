@@ -6743,7 +6743,7 @@ spec:
             cpu: 1000m
             memory: 1Gi
           requests:
-            cpu: 100m
+            cpu: 75m
             memory: 64Mi
         securityContext:
           allowPrivilegeEscalation: false
@@ -10535,7 +10535,7 @@ spec:
             cpu: 1000m
             memory: 1Gi
           requests:
-            cpu: 100m
+            cpu: 75m
             memory: 64Mi
         securityContext:
           allowPrivilegeEscalation: false
@@ -12482,7 +12482,7 @@ spec:
             cpu: 1000m
             memory: 1Gi
           requests:
-            cpu: 100m
+            cpu: 75m
             memory: 64Mi
         securityContext:
           allowPrivilegeEscalation: false
