@@ -8,3 +8,11 @@ spec:
     kind: OCIRepository
     name: dynatrace-operator
     namespace: dynatrace
+  values:
+    webhook:
+      requests:
+        cpu: 200m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 128Mi

@@ -246,10 +246,10 @@ spec:
     #
     resources:
       requests:
-        cpu: 500m
+        cpu: 100m
         memory: 512Mi
       limits:
-        cpu: 500m
+        cpu: 250m
         memory: 512Mi
     # Optional: Sets a node selector to control on which nodes the ActiveGate will be deployed.
     # For more information on node selectors, see https://kubernetes.io/docs/tasks/configure-pod-container/assign-pods-nodes/
