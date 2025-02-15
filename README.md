@@ -124,7 +124,40 @@ Deploying **helm** charts is a bit more involved: it requires defining a `HelmRe
 For more information, check out the [Flux documentation](https://fluxcd.io/flux/get-started/).
 
 ## Dynatrace Kubernetes App setup
-As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace resources in your own cluster, replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file. 
+As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart resources mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide, but replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
+
+## Confirm workload readiness
+Confirm that all Pods are in a Running state with:
+```bash
+kubectl get po --all-namespaces
+```
+
+---
+
+In order to test the reachability of the example-voting-app:
+1. Fetch the DNS name of the load balancer deployed by ingress-nginx:
+    ```bash
+    export LB_DNS_NAME=$(aws elb describe-load-balancers --query 'LoadBalancerDescriptions[0].DNSName' --output text)
+    ```
+2. Find the respective IP addressed:
+    ```bash
+    nslookup $LB_DNS_NAME
+    ```
+3. Edit the hosts file on your system to point to one of the IP addresses when resolving app-vote.com 
+    ```bash
+    sudo vim /etc/hosts
+    # add the following entry: <IP_ADDRESS> app-vote.com
+    # then save the file and resetyour shell process
+    exec bash
+    ```
+4. Submit a request
+    ```bash
+    curl -i http://app-vote.com/ # confirm that it is a 200 response
+    ```
+
+---
+
+Lastly, navigate to the Dynatrace Kubernetes App to confirm that metrics, logs and events are being collected from your cluster.
 
 ## Assumptions and Limitations
 - Dynatrace and fluent-bit tokens were commited as plain text. These tokens will be outdated by the time this repository is made public. In a production environment, consider using AWS KMS or HashiCorp Vault. 
