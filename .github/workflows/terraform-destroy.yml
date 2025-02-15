@@ -1,0 +1,29 @@
+name: Terraform Destroy
+
+on:
+  workflow_call:
+
+jobs:
+  destroy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          role-to-assume: ${{ vars.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve

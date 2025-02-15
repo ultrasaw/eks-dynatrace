@@ -1,0 +1,36 @@
+name: TF Pipeline
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  tf-validate:
+    permissions:
+      id-token: write
+      contents: read
+    needs: static-analysis
+    uses: ./.github/workflows/terraform-validate.yml
+
+  tf-plan:
+    permissions:
+      id-token: write
+      contents: read
+    needs: tf-validate
+    uses: ./.github/workflows/terraform-plan.yml
+
+  tf-apply:
+    permissions:
+      id-token: write
+      contents: read
+    needs: tf-plan
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    uses: ./.github/workflows/terraform-apply.yml
+
+  tf-destroy:
+    permissions:
+      id-token: write
+      contents: read
+    needs: tf-plan
+    if: github.ref == 'refs/heads/main' && github.event_name == 'workflow_dispatch'
+    uses: ./.github/workflows/terraform-destroy.yml
