@@ -55,7 +55,7 @@ The `terraform destroy` job is also available, and can be triggered manually. Pu
 ## GitOps
 All of the cluster workloads are deployed using the [GitOps](https://about.gitlab.com/topics/gitops/) pattern. A GitOps Kubernetes operator requires access to the source repository.
 
-Generate a GitHub PAT with repository permissions by checking *all permissions* under repo. Afterwards export as an environment variable.
+Generate a GitHub PAT with repository permissions by checking *all permissions* under *repo*. Afterwards export as an environment variable.
 
 ```bash
 export GITHUB_TOKEN=<GH_PAT>
@@ -76,7 +76,7 @@ As a consequence of running this command, all of the workloads defined within th
 
 ---
 
-Let's take the [example-voting-app](https://github.com/dockersamples/example-voting-app) as an example. First, define the Flux Kustomization resource that points to a specific path in the repository:
+Let's take the [example-voting-app](https://github.com/dockersamples/example-voting-app/tree/main/k8s-specifications) as an example. First, define the Flux `Kustomization` resource that points to a specific path in the repository:
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -94,7 +94,7 @@ spec:
   targetNamespace: example-voting-app
 ```
 
-Add all of the required Kubernetes resources inside `./gitops/app/example-voting-app` sub-directory; then, create a vanilla Kubernetes Kustomization resource to include all of the resources within the aforementioned sub-directory:
+Add all of the required Kubernetes resources inside `./gitops/app/example-voting-app` sub-directory; then, create a vanilla Kubernetes `Kustomization` resource to include all of the resources within the aforementioned sub-directory:
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
