@@ -9,7 +9,6 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    needs: static-analysis
     uses: ./.github/workflows/terraform-validate.yml
 
   tf-plan:
