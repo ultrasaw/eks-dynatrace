@@ -174,7 +174,7 @@ Still, creating a custom Dashboard based on the metrics provided by Dynatrace ca
 
 <img src="assets/dashboard-create-tile.png" alt="Alt text" width="600">
 
-I created the following *Tiles* for the following metrics:
+I created *Tiles* for the following metrics:
 - Kube-api server health status;
 - Total allocatable MEM / CPU;
 - Workload readiness.
@@ -184,6 +184,9 @@ Rest of the custom Dashboard:
 <img src="assets/dashboard-contd.png" alt="Alt text" width="600">
 
 ## Dynatrace Workflows
+Unfortunately, the Dynatrace free trial does not include Workflows functionality.
+
+<img src="assets/workflows-error.png" alt="Alt text" width="600">
 
 ## Assumptions and Limitations
 - Dynatrace and fluent-bit tokens were commited as plain text. These tokens will be outdated by the time this repository is made public. In a production environment, consider using AWS KMS or HashiCorp Vault. 
