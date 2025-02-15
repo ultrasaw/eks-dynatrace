@@ -94,7 +94,7 @@ spec:
   targetNamespace: example-voting-app
 ```
 
-Add all of the required Kubernetes resources inside `./gitops/app/example-voting-app` sub-directory; then, create a vanilla Kubernetes `Kustomization` resource to include all of the resources within the aforementioned sub-directory:
+Add all of the required Kubernetes resources to the `./gitops/app/example-voting-app` sub-directory; then, create a vanilla Kubernetes `Kustomization` resource to include all of the resources within the aforementioned sub-directory:
 ```yaml
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
@@ -117,8 +117,15 @@ resources:
 Unfortunately, there is no wildcard selector - you need to specify all of the resources.
 
 ---
-Deploying **helm** charts is a bit more involved: it requires defining a `HelmRelease` and `HelmRepository` resources. See the `./gitops/service/ingress-nginx` sub-0irectory for the deployment of the [ingress-nginx helm chart](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx).
+Deploying **helm** charts is a bit more involved: it requires defining a `HelmRelease` and `HelmRepository` resources. See the `./gitops/service/ingress-nginx` sub-directory for the deployment of the [ingress-nginx helm chart](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx).
 
 ---
 
 For more information, check out the [Flux documentation](https://fluxcd.io/flux/get-started/).
+
+## Dynatrace Kubernetes App setup
+As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed with Flux. The `./service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace resources in your own cluster, replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file. 
+
+## Assumptions and Limitations
+- Dynatrace and fluent-bit tokens were commited as plain text. These tokens will be outdated by the time this repository is made public. In a production environment, consider using AWS KMS or HashiCorp Vault. 
+- Once deployed, the ingress-nginx operator creates a load balancer on AWS. Before running `terraform destroy`, delete the aforementioned load balancer either via the COnsole UI or with the `aws` CLI.
