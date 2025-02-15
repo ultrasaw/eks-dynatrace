@@ -128,13 +128,11 @@ As mentioned in the **GitOps** section, all workloads, including the Dynatrace o
 
 When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide:
 
-![Alt text](assets/quickstart-k8s-app.png)
-
-<img src="assets/quickstart-k8s-app.png" alt="Alt text" width="300">
+<img src="assets/quickstart-k8s-app.png" alt="Alt text" width="600">
 
 However, you must replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
 
-![Alt text](assets/quickstart-k8s-app2.png)
+<img src="assets/quickstart-k8s-app2.png" alt="Alt text" width="600">
 
 ## Confirm workload readiness
 Confirm that all Pods are in a Running state with:
