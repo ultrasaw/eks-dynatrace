@@ -124,7 +124,9 @@ Deploying **helm** charts is a bit more involved: it requires defining a `HelmRe
 For more information, check out the [Flux documentation](https://fluxcd.io/flux/get-started/).
 
 ## Dynatrace Kubernetes App setup
-As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart resources mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide, but replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
+As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart resources mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart).
+
+When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide, but replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
 
 ## Confirm workload readiness
 Confirm that all Pods are in a Running state with:
@@ -139,7 +141,7 @@ In order to test the reachability of the example-voting-app:
     ```bash
     export LB_DNS_NAME=$(aws elb describe-load-balancers --query 'LoadBalancerDescriptions[0].DNSName' --output text)
     ```
-2. Find the respective IP addressed:
+2. Find the respective IP addresses:
     ```bash
     nslookup $LB_DNS_NAME
     ```
@@ -147,7 +149,7 @@ In order to test the reachability of the example-voting-app:
     ```bash
     sudo vim /etc/hosts
     # add the following entry: <IP_ADDRESS> app-vote.com
-    # then save the file and resetyour shell process
+    # then save the file and reset your shell process
     exec bash
     ```
 4. Submit a request
