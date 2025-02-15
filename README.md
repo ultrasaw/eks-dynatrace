@@ -2,10 +2,18 @@
 Example EKS &lt;> Dynatrace integration 
 
 ## Project overview
-*TBA*
+This project walks you through the setup of an EKS cluster hosting the [example-voting-app](https://github.com/dockersamples/example-voting-app). The cluster and its workloads are monitored by [Dynatrace](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). The infrastructure is defined with Terraform and deployed via GitHub Actions. All of the cluster workloads are deplyed via [Flux](https://github.com/fluxcd/flux2).
 
-## Architecture diagram
-![Diagram Description](assets/infra.drawio.svg)
+AWS Services used:
+- EKS - managed Kubernetes service.
+- VPC - Kubernetes worker nodes reside within a VPC network.
+- S3 - storage for CloudTrail & AWS Config.
+- IAM - OIDC for GitHub Actions.
+
+Helm charts used:
+- ingress-nginx - expose Kubernetes workloads outside of the cluster.
+- dynatrace-operator - enables monitoring via the Dynatrace Kubernetes App.
+- fluent-bit - collects logs on each worker node; required by the Dynatrace Kubernetes App.
 
 ## Prerequisites
 Ensure access to the aforementioned AWS services, then:
