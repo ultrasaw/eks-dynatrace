@@ -126,7 +126,15 @@ For more information, check out the [Flux documentation](https://fluxcd.io/flux/
 ## Dynatrace Kubernetes App setup
 As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart resources mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart).
 
-When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide, but replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
+When setting up the Dynatrace Kubernetes App in your own cluster, follow the linked guide:
+
+![Alt text](assets/quickstart-k8s-app.png)
+
+<img src="assets/quickstart-k8s-app.png" alt="Alt text" width="300">
+
+However, you must replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file.
+
+![Alt text](assets/quickstart-k8s-app2.png)
 
 ## Confirm workload readiness
 Confirm that all Pods are in a Running state with:
