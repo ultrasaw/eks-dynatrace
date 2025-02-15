@@ -76,7 +76,7 @@ As a consequence of running this command, all of the workloads defined within th
 
 ---
 
-Let's take the [example-voting-app](https://github.com/dockersamples/example-voting-app/tree/main/k8s-specifications) as an example. First, define the Flux `Kustomization` resource that points to a specific path in the repository:
+Let's take the [example-voting-app](https://github.com/dockersamples/example-voting-app/tree/main/k8s-specifications) as an example. First, in the `./gitops/source` sub-directory, define the Flux `Kustomization` resource that points to a specific path in the repository:
 ```yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -124,7 +124,7 @@ Deploying **helm** charts is a bit more involved: it requires defining a `HelmRe
 For more information, check out the [Flux documentation](https://fluxcd.io/flux/get-started/).
 
 ## Dynatrace Kubernetes App setup
-As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed with Flux. The `./service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace resources in your own cluster, replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file. 
+As mentioned in the **GitOps** section, all workloads, including the Dynatrace ones, are deployed via Flux. The `./gitops/service/dynatrace` sub-directory contains the `dynakube.yml` and the `dynatrace-operator` helm chart mentioned in the [Dynatrace Kubernetes guide](https://docs.dynatrace.com/docs/ingest-from/setup-on-k8s/quickstart). When setting up the Dynatrace resources in your own cluster, replace the *operator* and *data ingest* tokens in the `dynakube.yml` file, and the *fluent-bit* token inside the fluent-bit's `helmrelease.yml` file. 
 
 ## Assumptions and Limitations
 - Dynatrace and fluent-bit tokens were commited as plain text. These tokens will be outdated by the time this repository is made public. In a production environment, consider using AWS KMS or HashiCorp Vault. 
