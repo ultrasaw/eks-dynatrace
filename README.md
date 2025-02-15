@@ -6,14 +6,14 @@ This project walks you through the setup of an EKS cluster hosting the [example-
 
 AWS Services used:
 - EKS - managed Kubernetes service.
-- EC2 - worker nodes of the Kubernetes clsuter.
+- EC2 - worker nodes of the Kubernetes cluster.
 - ELB - load balancer for the EKS node-group; created by the ingress-nginx controller. 
 - VPC - Kubernetes worker nodes reside within a VPC network.
-- S3 - storage for CloudTrail & AWS Config.
+- S3 - storage for Terraform state.
 - IAM - OIDC for GitHub Actions.
 
 Helm charts used:
-- ingress-nginx - expose Kubernetes workloads outside of the cluster.
+- ingress-nginx - exposes Kubernetes workloads outside of the cluster.
 - dynatrace-operator - enables monitoring via the Dynatrace Kubernetes App.
 - fluent-bit - collects logs on each worker node; required by the Dynatrace Kubernetes App.
 
@@ -26,6 +26,7 @@ export PREREQUISITES_BUCKET="prerequisites-eks-dynatrace-infra" # name has to be
 aws s3api create-bucket --bucket $PREREQUISITES_BUCKET --region us-east-1
 aws s3api put-bucket-versioning --bucket $PREREQUISITES_BUCKET --versioning-configuration Status=Enabled
 ```
+
 Fork the repository, clone it, change line **29** in `8_oidc.tf` to your GH account and create the infrastructure from your local shell at least once to set up OIDC for GitHub Actions:
 ```bash
 export AWS_ACCESS_KEY_ID="YOUR_KEY"
@@ -177,7 +178,10 @@ Still, creating a custom Dashboard based on the metrics provided by Dynatrace ca
 I created *Tiles* for the following metrics:
 - Kube-api server health status;
 - Total allocatable MEM / CPU;
+- Node conditions;
 - Workload readiness.
+
+---
 
 Rest of the custom Dashboard:
 
