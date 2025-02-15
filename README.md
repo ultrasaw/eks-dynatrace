@@ -6,6 +6,8 @@ This project walks you through the setup of an EKS cluster hosting the [example-
 
 AWS Services used:
 - EKS - managed Kubernetes service.
+- EC2 - worker nodes of the Kubernetes clsuter.
+- ELB - load balancer for the EKS node-group; created by the ingress-nginx controller. 
 - VPC - Kubernetes worker nodes reside within a VPC network.
 - S3 - storage for CloudTrail & AWS Config.
 - IAM - OIDC for GitHub Actions.
@@ -51,13 +53,72 @@ After addressing the **Prerequisites** section, push to the main branch of your 
 The `terraform destroy` job is also available, and can be triggered manually. Pushing to any other branch will only trigger the `terraform validate` and `terraform plan` jobs.
 
 ## GitOps
+All of the cluster workloads are deployed using the [GitOps](https://about.gitlab.com/topics/gitops/) pattern. A GitOps Kubernetes operator requires access to the source repository.
+
+Generate a GitHub PAT with repository permissions by checking *all permissions* under repo. Afterwards export as an environment variable.
+
+```bash
+export GITHUB_TOKEN=<GH_PAT>
+```
+
+Then, bootstrap the GitOps operator called [Flux](https://github.com/fluxcd/flux2); run the following command locally:
 
 ```bash
 flux bootstrap github \
   --token-auth \
-  --owner=ultrasaw \
+  --owner=YOUR_GH_USERNAME \
   --repository=eks-dynatrace \
   --branch=main \
   --path=gitops/source \
   --personal
 ```
+As a consequence of running this command, all of the workloads defined within the `gitops` sub-directory will be deployed to your Kubernetes cluster.
+
+---
+
+Let's take the [example-voting-app](https://github.com/dockersamples/example-voting-app) as an example. First, define the Flux Kustomization resource that points to a specific path in the repository:
+```yaml
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: example-voting-app
+  namespace: flux-system
+spec:
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./gitops/app/example-voting-app
+  prune: false
+  suspend: false
+  targetNamespace: example-voting-app
+```
+
+Add all of the required Kubernetes resources inside `./gitops/app/example-voting-app` sub-directory; then, create a vanilla Kubernetes Kustomization resource to include all of the resources within the aforementioned sub-directory:
+```yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: example-voting-app
+resources:
+  - namespace.yml
+  - deployment-db.yml
+  - deployment-redis.yml
+  - deployment-result.yml
+  - deployment-vote.yml
+  - deployment-worker.yml
+  - svc-db.yml
+  - svc-redis.yml
+  - svc-result.yml
+  - svc-vote.yml
+  - ingress-result.yml
+  - ingress-vote.yml
+```
+
+Unfortunately, there is no wildcard selector - you need to specify all of the resources.
+
+---
+Deploying **helm** charts is a bit more involved: it requires defining a `HelmRelease` and `HelmRepository` resources. See the `./gitops/service/ingress-nginx` sub-0irectory for the deployment of the [ingress-nginx helm chart](https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx).
+
+---
+
+For more information, check out the [Flux documentation](https://fluxcd.io/flux/get-started/).
