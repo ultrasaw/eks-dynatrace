@@ -193,7 +193,7 @@ Unfortunately, the Dynatrace free trial does not include Workflows functionality
 <img src="assets/workflows-error.png" alt="Alt text" width="600">
 
 ## Assumptions and Limitations
-- Dynatrace and fluent-bit tokens were commited as plain text. These tokens will be outdated by the time this repository is made public. In a production environment, consider using AWS KMS or HashiCorp Vault. 
+- Dynatrace and fluent-bit tokens were commited as plain text. In a production environment, consider using AWS KMS or HashiCorp Vault. 
 - Once deployed, the ingress-nginx operator creates a load balancer on AWS. Before running `terraform destroy`, delete the aforementioned load balancer either via the Console UI or with the `aws` CLI.
 - Dynatrace free trial does not include Workflows functionality.
 - State locking is disabled, assuming a single contributor.
