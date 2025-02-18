@@ -4909,7 +4909,7 @@ spec:
             port: http
         resources:
           limits:
-            cpu: 400m
+            cpu: 1000m
             memory: 1Gi
           requests:
             cpu: 50m
@@ -6740,7 +6740,7 @@ spec:
             port: healthz
         resources:
           limits:
-            cpu: 400m
+            cpu: 1000m
             memory: 1Gi
           requests:
             cpu: 100m
@@ -10532,7 +10532,7 @@ spec:
             port: healthz
         resources:
           limits:
-            cpu: 400m
+            cpu: 1000m
             memory: 1Gi
           requests:
             cpu: 100m
@@ -12479,7 +12479,7 @@ spec:
             port: healthz
         resources:
           limits:
-            cpu: 400m
+            cpu: 1000m
             memory: 1Gi
           requests:
             cpu: 100m
